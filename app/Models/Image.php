@@ -3,14 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class Image extends Model
 {
+
     /**
      * @var array 默认插入值
      */
     protected $attributes = [
-        'image_url' => 'user/image/default.jpg'
+        'image_url' => '/image/user/default.jpg'
     ];
 
 

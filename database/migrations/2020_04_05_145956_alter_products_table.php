@@ -18,6 +18,7 @@ class AlterProductsTable extends Migration
             $table->dropColumn('frame_id');
             $table->dropColumn('sold_count');
             $table->dropColumn('review_count');
+            $table->dropColumn('image');
         });
     }
 

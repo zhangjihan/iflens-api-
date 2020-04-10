@@ -93,4 +93,10 @@ class UserController extends Controller
 
         return response()->json(['user' => $user, 'message' => '已获取用户','status'=>200]);
     }
+
+    public function getRelevance(Request $request)
+    {
+        $user = JWTAuth::authenticate($request->token)->with(['addresses','cartItems'])->first();
+        return  response()->json(["user"=>$user,"status"=>200]) ;
+    }
 }
