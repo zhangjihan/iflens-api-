@@ -4,8 +4,12 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+<<<<<<< HEAD
+
+=======
 use Monolog\Logger;
 use Yansongda\Pay\Pay;
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+<<<<<<< HEAD
+        //
+=======
         // 往服务容器中注入一个名为 alipay 的单例对象
         $this->app->singleton('alipay', function () {
             $config = config('pay.alipay');
@@ -41,6 +48,7 @@ class AppServiceProvider extends ServiceProvider
 //            // 调用 Yansongda\Pay 来创建一个微信支付对象
 //            return Pay::wechat($config);
 //        });
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
     }
 
     /**

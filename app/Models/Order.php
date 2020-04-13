@@ -35,7 +35,11 @@ class Order extends Model
     ];
 
     public static $refundStatusMap = [
+<<<<<<< HEAD
+        self::REFUND_STATUS_PENDING    => '未退款',
+=======
         self::REFUND_STATUS_PENDING    => '无',
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
         self::REFUND_STATUS_APPLIED    => '已申请退款',
         self::REFUND_STATUS_PROCESSING => '退款中',
         self::REFUND_STATUS_SUCCESS    => '退款成功',
@@ -53,21 +57,42 @@ class Order extends Model
         'order_status',
         'address',
         'total_amount',
+<<<<<<< HEAD
+        'remark',
         'paid_at',
+        'payment_method',
+=======
+        'paid_at',
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
         'payment_no',
         'refund_status',
         'refund_no',
         'closed',
+<<<<<<< HEAD
+        'reviewed',
         'ship_status',
         'ship_data',
+        'extra',
+=======
+        'ship_status',
+        'ship_data',
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
     ];
 
     protected $casts = [
         'closed'    => 'boolean',
+<<<<<<< HEAD
+        'reviewed'  => 'boolean',
+        'address'   => 'json',
+        'ship_data' => 'json',
+        'extra'     => 'json',
+    ];
+=======
         'ship_data' => 'json',
 
     ];
     //  'address'   => 'json',
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
 
     protected $dates = [
         'paid_at',
@@ -101,8 +126,11 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
     public static function findAvailableNo()
     {
         // 订单流水号前缀
@@ -119,6 +147,8 @@ class Order extends Model
 
         return false;
     }
+<<<<<<< HEAD
+=======
 
 
 
@@ -132,4 +162,5 @@ class Order extends Model
 
         return $no;
     }
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
 }
