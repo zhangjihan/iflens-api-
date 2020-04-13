@@ -8,6 +8,8 @@ class ProductSku extends Model
 {
     protected $fillable = ['title', 'description', 'price', 'stock'];
 
+    protected $with = "product";
+
     public function product()
     {
         return $this->belongsTo(Product::class);

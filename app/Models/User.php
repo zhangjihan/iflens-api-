@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\UserAddress;
+use App\Models\Eyes_data;
+use App\Models\Order;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 //use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -63,6 +66,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      * 关联用户地址
@@ -80,6 +84,16 @@ class User extends Authenticatable implements JWTSubject
 
     public function image()
     {
-        return $this->morphOne('App\Models\Image','imageable');
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
+
+    public function eyesData()
+    {
+        return $this->hasOne(Eyes_data::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

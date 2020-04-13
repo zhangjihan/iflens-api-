@@ -96,7 +96,25 @@ class UserController extends Controller
 
     public function getRelevance(Request $request)
     {
-        $user = JWTAuth::authenticate($request->token)->with(['addresses','cartItems'])->first();
+        $user = JWTAuth::authenticate($request->token)->with(['addresses','eyesData','orders'=>function($orders){
+            $orders->with("items")->get();
+        },'cartItems'=>function($cartItems){
+            $cartItems->with("productSku")->get();
+        }])->first();
         return  response()->json(["user"=>$user,"status"=>200]) ;
+    }
+
+    public function updateUserData(Request $request)
+    {
+        JWTAuth::authenticate($request->token)->update(['name'=>$request->name]);
+        $user=JWTAuth::authenticate($request->token)->with('eyesData')->first();
+
+            if($user->eyesData){
+               $user->eyesData()->update($request->eyesData);
+            }else{
+               $user->eyesData()->create($request->eyesData);
+            }
+
+        return response()->json(["name"=>$user->name,"eyesData"=>$user->eyesData()->get(),"status"=>200,"messgae"=>"保存成功"]);
     }
 }

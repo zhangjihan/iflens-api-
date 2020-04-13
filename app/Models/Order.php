@@ -69,7 +69,7 @@ class Order extends Model
     protected $casts = [
         'closed'    => 'boolean',
         'reviewed'  => 'boolean',
-        'address'   => 'json',
+
         'ship_data' => 'json',
         'extra'     => 'json',
     ];
@@ -122,4 +122,5 @@ class Order extends Model
 
         return false;
     }
+
 }

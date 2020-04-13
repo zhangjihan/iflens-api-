@@ -14,6 +14,7 @@ class Product extends Model
         'on_sale' => 'boolean', // on_sale 是一个布尔类型的字段
     ];
 
+    protected $with = "images";
 
     public function productable()
     {
@@ -34,8 +35,6 @@ class Product extends Model
     protected static function booted()
     {
         static::created(function ($product) {
-
-
         });
     }
 
