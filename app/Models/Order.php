@@ -28,11 +28,11 @@ class Order extends Model
     const REFUND_STATUS_FAILED = 'failed';
 
     public static $orderStatusMap = [
-        self::ORDER_STATUS_PENDING => '等待接单',
-        self::ORDER_STATUS_APPLIED => '商户接单',
-        self::ORDER_STATUS_PROCESSING => '加工中',
-        self::ORDER_STATUS_FINISH => '交易完成',
-        self::ORDER_STATUS_CANCELLED => '已取消'
+        self::ORDER_STATUS_PENDING      => '等待接单',
+        self::ORDER_STATUS_APPLIED      => '商户接单',
+        self::ORDER_STATUS_PROCESSING   => '加工中',
+        self::ORDER_STATUS_FINISH       => '交易完成',
+        self::ORDER_STATUS_CANCELLED    => '已取消'
     ];
 
     public static $refundStatusMap = [
@@ -42,14 +42,14 @@ class Order extends Model
 
         self::REFUND_STATUS_APPLIED => '已申请退款',
         self::REFUND_STATUS_PROCESSING => '退款中',
-        self::REFUND_STATUS_SUCCESS => '退款成功',
-        self::REFUND_STATUS_FAILED => '退款失败',
+        self::REFUND_STATUS_SUCCESS    => '退款成功',
+        self::REFUND_STATUS_FAILED     => '退款失败',
     ];
 
     public static $shipStatusMap = [
-        self::SHIP_STATUS_PENDING => '未发货',
+        self::SHIP_STATUS_PENDING   => '未发货',
         self::SHIP_STATUS_DELIVERED => '已发货',
-        self::SHIP_STATUS_RECEIVED => '已收货',
+        self::SHIP_STATUS_RECEIVED  => '已收货',
     ];
 
     protected $fillable = [
@@ -72,13 +72,11 @@ class Order extends Model
     ];
 
     protected $casts = [
-        'closed' => 'boolean',
-
+        'closed'    => 'boolean',
         'ship_data' => 'json',
 
     ];
-
-
+    //  'address'   => 'json',
     protected $dates = [
         'paid_at',
     ];

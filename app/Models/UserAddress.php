@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\User;
+
 use Illuminate\Database\Eloquent\Model;
 
 class UserAddress extends Model
 {
+    //
+
     protected $fillable = [
-        'user_id',
-        'contact_name',//联系人姓名
-        'contact_phone',//联系人电话
         'address',
+        'contact_name',
+        'contact_phone',
         'last_used_at',
     ];
 
@@ -20,14 +23,5 @@ class UserAddress extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-//    public function getFullAddressAttribute()
-//    {
-//        return "{$this->province}{$this->city}{$this->district}{$this->address}";
-//    }
-//    public function own(User $user, UserAddress $address)
-//    {
-//        return $address->user_id == $user->id;
-//    }
 
 }
