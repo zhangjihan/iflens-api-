@@ -66,7 +66,6 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      * 关联用户地址

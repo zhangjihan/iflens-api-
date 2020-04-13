@@ -18,6 +18,8 @@ class Handler extends ExceptionHandler
 //        InvalidRequestException::class,
 //        CouponCodeUnavailableException::class,
 
+        InvalidRequestException::class,
+        CouponCodeUnavailableException::class,
     ];
 
     /**
