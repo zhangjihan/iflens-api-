@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+
 use App\Models\UserAddress;
 use App\Models\OrderItem;
 use JWTAuth;
@@ -13,9 +14,8 @@ class OrderController extends Controller
 {
     public function setOrder(Request $request)
     {
-        $total_amount=$this->getTotalAmount($request->cartItems);
-        $address=$this->getAddress($request->address);
-
+        $total_amount = $this->getTotalAmount($request->cartItems);
+        $address = $this->getAddress($request->address);
 
 
         $user = JWTAuth::authenticate($request->token)->first();
@@ -53,3 +53,4 @@ class OrderController extends Controller
         return $address->address . "--" . $address->contact_name . "--" . $address->contact_phone;
     }
 }
+

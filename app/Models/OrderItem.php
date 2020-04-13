@@ -8,10 +8,12 @@ class OrderItem extends Model
 {
     protected $fillable = ['amount', 'price', 'rating', 'review', 'reviewed_at','product_id','product_sku_id'];
     protected $dates = ['reviewed_at'];
+
+    protected $with = ['product','productSku'];
+
     //这个模型没有创建和更新时间戳
     public $timestamps = false;
 
-    protected $with=["productSku","product"];
     public function product()
     {
         return $this->belongsTo(Product::class);

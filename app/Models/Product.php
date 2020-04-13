@@ -8,7 +8,9 @@ class Product extends Model
 {
     protected $fillable = [
         'title', 'description', 'image', 'on_sale',
+
         'rating', 'price'
+
     ];
     protected $casts = [
         'on_sale' => 'boolean', // on_sale 是一个布尔类型的字段
@@ -27,6 +29,8 @@ class Product extends Model
         return $this->hasMany("App\Models\ProductSku");
     }
 
+
+
     public function images()
     {
         return $this->morphMany("App\Models\Image", "imageable");
@@ -35,7 +39,10 @@ class Product extends Model
     protected static function booted()
     {
         static::created(function ($product) {
+
+
         });
     }
 
 }
+

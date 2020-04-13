@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductSku extends Model
 {
-    protected $fillable = ['title', 'description', 'price', 'stock'];
+
+
+
+    protected $fillable = ['title', 'description', 'price'];
+
 
     protected $with = "product";
 

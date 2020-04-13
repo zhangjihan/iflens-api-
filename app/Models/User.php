@@ -74,6 +74,7 @@ class User extends Authenticatable implements JWTSubject
     public function addresses()
     {
 
+
         return $this->hasMany(UserAddress::class);
     }
 
@@ -82,10 +83,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(CartItem::class);
     }
 
-    public function image()
-    {
-        return $this->morphOne('App\Models\Image', 'imageable');
-    }
+
 
     public function eyesData()
     {
@@ -95,5 +93,16 @@ class User extends Authenticatable implements JWTSubject
     public function orders()
     {
         return $this->hasMany(Order::class);
+
+    }
+
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
+
+    public function eyes_data()
+    {
+        return $this->hasOne('App\Models\Eyes_data', 'user_id');
     }
 }

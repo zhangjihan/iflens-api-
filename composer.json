@@ -14,7 +14,12 @@
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "laravel/ui": "^1.1",
+<<<<<<< HEAD
         "tymon/jwt-auth": "dev-develop"
+=======
+        "tymon/jwt-auth": "dev-develop",
+        "yansongda/pay": "^2.9"
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
     },
     "require-dev": {
         "facade/ignition": "^1.4",

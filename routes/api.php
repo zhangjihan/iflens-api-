@@ -23,6 +23,7 @@ Route::namespace('Api')->group(function () {
     Route::post('/register','UserController@register');
     Route::post('/getProduct','ProductController@product');
     Route::get('/getProducts','ProductController@productsList');
+
     Route::group(['middleware' => 'auth.jwt'], function () {
         Route::post('/addToCart','CartController@addToCart');
 
@@ -33,7 +34,9 @@ Route::namespace('Api')->group(function () {
         Route::post('/getRelevance','UserController@getRelevance');
         Route::post('/updateUserData','UserController@updateUserData');
 
+
         Route::post('/setOrder','OrderController@setOrder');
+
     });
 });
 

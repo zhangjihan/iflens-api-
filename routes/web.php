@@ -23,15 +23,18 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
 
     //Route::get('user_addresses', 'UserAddressesController@create')->name('user_addresses.create');
 
-    Route::any('user_addresses/store', 'UserAddressesController@store')->name('user_addresses.store');
 
-    Route::get('user_addresses/{user_address}', 'UserAddressesController@edit')->name('user_addresses.edit');
 
-    Route::put('user_addresses/{user_address}', 'UserAddressesController@update')->name('user_addresses.update');
+    Route::post('orders', 'OrdersController@store')->name('orders.store');
 
-    Route::delete('user_addresses/{user_address}', 'UserAddressesController@destroy')->name('user_addresses.destroy');
+    Route::post('orders/{order}/received', 'OrdersController@received')->name('orders.received');
+
+
+    Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');
+
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
