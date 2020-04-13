@@ -1,10 +1,7 @@
 <?php
 
 namespace App\Models;
-use App\Models\UserAddress;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-//use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -81,6 +78,5 @@ class User extends Authenticatable implements JWTSubject
     public function image()
     {
         return $this->morphOne('App\Models\Image','imageable');
-
     }
 }
