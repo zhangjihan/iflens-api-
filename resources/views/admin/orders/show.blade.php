@@ -90,6 +90,8 @@
             <!-- 订单发货结束 -->
 
             <tr>
+{{--              @php(dd($order->user->eyes_data))--}}
+                @if($order->user->eyes_data !== null )
             <td rowspan="{{ $order->user->eyes_data->count() + 1 }}">验光数据</td>
                 <td>视力情况</td>
                 <td>左眼视力</td>
@@ -98,6 +100,7 @@
                 <td>瞳距</td>
                 <td>轴度</td>
                 <td>矫正视力</td>
+
             </tr>
             <tr>
                 @if($order->user->eyes_data['status']===0)
@@ -112,8 +115,7 @@
                     <td>{{$order->user->eyes_data['axis']}}</td>
                     <td>{{$order->user->eyes_data['visual_acuity']}}</td>
             </tr>
-
-
+            @endif
             </tbody>
         </table>
 
