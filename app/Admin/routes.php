@@ -31,9 +31,6 @@ Route::group([
     $router->post('orders/{order}/ship', 'OrdersController@ship')->name('admin.orders.ship');
 
 
-
-
-
     //镜片操作路由
     $router->get('lens', 'LensController@index')->name('admin.lens.index');
 

@@ -6,8 +6,6 @@ use App\Models\UserAddress;
 use App\Models\Eyes_data;
 use App\Models\Order;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-//use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 

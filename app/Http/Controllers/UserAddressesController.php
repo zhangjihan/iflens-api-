@@ -35,6 +35,7 @@ class UserAddressesController extends Controller
             'contact_name',
             'contact_phone',
         ]));
+        return redirect()->route('index');
     }
 
 }
