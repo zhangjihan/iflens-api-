@@ -1,7 +1,12 @@
 <?php
 
 namespace App\Models;
+
+use App\Models\UserAddress;
+use App\Models\Eyes_data;
+use App\Models\Order;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -60,12 +65,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      * 关联用户地址
      */
     public function addresses()
     {
+
 
         return $this->hasMany(UserAddress::class);
     }
@@ -75,8 +82,26 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(CartItem::class);
     }
 
+
+
+    public function eyesData()
+    {
+        return $this->hasOne(Eyes_data::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+
+    }
+
     public function image()
     {
-        return $this->morphOne('App\Models\Image','imageable');
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
+
+    public function eyes_data()
+    {
+        return $this->hasOne('App\Models\Eyes_data', 'user_id');
     }
 }

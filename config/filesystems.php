@@ -64,8 +64,7 @@ return [
             'url' => env('AWS_URL'),
         ],
 
-<<<<<<< HEAD
-=======
+
         'admin' => [
             'driver'     => 'local',
             'root'       => public_path('upload'),
@@ -74,7 +73,6 @@ return [
             'url' => env('APP_URL').'/upload/',
         ],
 
->>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
     ],
 
 ];
