@@ -9,11 +9,6 @@ Route::group([
     'namespace'     => config('admin.route.namespace'),
     'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
-<<<<<<< HEAD
-
-    $router->get('/', 'HomeController@index')->name('admin.home');
-    $router->get('users', 'UsersController@index');
-=======
     $router->get('/', 'HomeController@index')->name('admin.home');
 
     $router->get('users', 'UsersController@index');
@@ -65,5 +60,5 @@ Route::group([
     $router->put('frame/{id}', 'FrameController@update');
 
     $router->get('frame/{id}', 'FrameController@show')->name('admin.frame.show');
->>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
+
 });
