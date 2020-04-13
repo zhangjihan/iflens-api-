@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
 
     //Route::get('user_addresses', 'UserAddressesController@create')->name('user_addresses.create');
 
+<<<<<<< HEAD
     Route::any('user_addresses/store', 'UserAddressesController@store')->name('user_addresses.store');
 
     Route::get('user_addresses/{user_address}', 'UserAddressesController@edit')->name('user_addresses.edit');
@@ -30,8 +31,29 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::put('user_addresses/{user_address}', 'UserAddressesController@update')->name('user_addresses.update');
 
     Route::delete('user_addresses/{user_address}', 'UserAddressesController@destroy')->name('user_addresses.destroy');
+=======
+//    Route::any('user_addresses/store', 'UserAddressesController@store')->name('user_addresses.store');
+//
+//    Route::get('user_addresses/{user_address}', 'UserAddressesController@edit')->name('user_addresses.edit');
+//
+//    Route::put('user_addresses/{user_address}', 'UserAddressesController@update')->name('user_addresses.update');
+//
+//    Route::delete('user_addresses/{user_address}', 'UserAddressesController@destroy')->name('user_addresses.destroy');
+
+    Route::post('orders', 'OrdersController@store')->name('orders.store');
+
+    Route::post('orders/{order}/received', 'OrdersController@received')->name('orders.received');
+
+
+    Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');
+
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+<<<<<<< HEAD
+=======
+
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5

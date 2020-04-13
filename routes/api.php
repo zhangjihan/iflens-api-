@@ -23,6 +23,7 @@ Route::namespace('Api')->group(function () {
     Route::post('/register','UserController@register');
     Route::post('/getProduct','ProductController@product');
     Route::get('/getProducts','ProductController@productsList');
+<<<<<<< HEAD
     Route::group(['middleware' => 'auth.jwt'], function () {
         Route::post('/addToCart','CartController@addToCart');
 
@@ -32,6 +33,15 @@ Route::namespace('Api')->group(function () {
         Route::post('/getAuth','UserController@getAuthUser');
         Route::post('/getRelevance','UserController@getRelevance');
 
+=======
+
+    Route::group(['middleware' => 'auth.jwt'], function () {
+        Route::post('/addToCart','CartController@addToCart');
+        Route::post('/addAddress','AddressController@addAddress');
+        Route::post('/deleteAddress','AddressController@deleteAddress');
+        Route::post('/getAuth','UserController@getAuthUser');
+        Route::post('/getRelevance','UserController@getRelevance');
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
     });
 });
 

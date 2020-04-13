@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+<<<<<<< HEAD
 use Faker\Generator as Faker;
+=======
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,6 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
 
 
         factory(App\Models\Frame::class, 22)->create()->each(function ($frame) {
@@ -30,5 +34,8 @@ class DatabaseSeeder extends Seeder
 
         });
 
+=======
+        factory(App\Models\User::class, 5)->create();
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
     }
 }

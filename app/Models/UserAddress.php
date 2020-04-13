@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+<<<<<<< HEAD
 use App\Models\User;
+=======
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
 use Illuminate\Database\Eloquent\Model;
 
 class UserAddress extends Model
 {
+<<<<<<< HEAD
     protected $fillable = [
         'user_id',
         'contact_name',//联系人姓名
@@ -45,4 +49,29 @@ class UserAddress extends Model
 //                ";
 //    }]
 
+=======
+    //
+
+    protected $fillable = [
+        'address',
+        'contact_name',
+        'contact_phone',
+        'last_used_at',
+    ];
+    protected $dates = ['last_used_at'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+//    public function getFullAddressAttribute()
+//    {
+//        return "{$this->province}{$this->city}{$this->district}{$this->address}";
+//    }
+//    public function own(User $user, UserAddress $address)
+//    {
+//        return $address->user_id == $user->id;
+//    }
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
 }

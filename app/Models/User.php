@@ -1,10 +1,15 @@
 <?php
 
 namespace App\Models;
+<<<<<<< HEAD
 use App\Models\UserAddress;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 //use Illuminate\Contracts\Auth\MustVerifyEmail;
+=======
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -69,6 +74,7 @@ class User extends Authenticatable implements JWTSubject
      */
     public function addresses()
     {
+<<<<<<< HEAD
 
         return $this->hasMany(UserAddress::class);
     }
@@ -81,5 +87,22 @@ class User extends Authenticatable implements JWTSubject
     public function image()
     {
         return $this->morphOne('App\Models\Image','imageable');
+=======
+        return $this->hasMany(UserAddress::class);
+    }
+//    public function cartItems()
+//    {
+//        return $this->hasMany(CartItem::class);
+//    }
+
+    public function image()
+    {
+        return $this->morphOne('App\Models\Image','imageable');
+    }
+
+    public function eyes_data()
+    {
+        return $this->hasOne('App\Models\Eyes_data','user_id');
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
     }
 }

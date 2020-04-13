@@ -18,4 +18,8 @@
  *
  */
 
+<<<<<<< HEAD
 Encore\Admin\Form::forget(['map', 'editor']);
+=======
+Encore\Admin\Form::forget(['map']);
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5

@@ -8,7 +8,11 @@ class Product extends Model
 {
     protected $fillable = [
         'title', 'description', 'image', 'on_sale',
+<<<<<<< HEAD
         'rating', 'price'
+=======
+        'rating',
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
     ];
     protected $casts = [
         'on_sale' => 'boolean', // on_sale 是一个布尔类型的字段
@@ -26,6 +30,14 @@ class Product extends Model
         return $this->hasMany("App\Models\ProductSku");
     }
 
+<<<<<<< HEAD
+=======
+//    public function items()
+//    {
+//        return $this->hasOne(OrderItem::class);
+//    }
+
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
     public function images()
     {
         return $this->morphMany("App\Models\Image", "imageable");
@@ -35,8 +47,15 @@ class Product extends Model
     {
         static::created(function ($product) {
 
+<<<<<<< HEAD
 
         });
     }
 
 }
+=======
+        });
+    }
+
+}
+>>>>>>> 72a7088e3600c195b142cc6b9317d11d0f68bce5
