@@ -22,7 +22,6 @@ class OrdersController extends Controller
             $order   = new Order([
                 'address'      => [ // 将地址信息放入订单中
                     'address'       => $address->full_address,
-                    'zip'           => $address->zip,
                     'contact_name'  => $address->contact_name,
                     'contact_phone' => $address->contact_phone,
                 ],
