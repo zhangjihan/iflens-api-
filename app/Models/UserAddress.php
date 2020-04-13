@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserAddress extends Model
 {
+    //
+
     protected $fillable = [
-        'user_id',
-        'contact_name',//联系人姓名
-        'contact_phone',//联系人电话
         'address',
+        'contact_name',
+        'contact_phone',
         'last_used_at',
     ];
 

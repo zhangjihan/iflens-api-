@@ -35,6 +35,7 @@ Route::namespace('Api')->group(function () {
 
         Route::post('/getAuth','UserController@getAuthUser');
         Route::post('/getRelevance','UserController@getRelevance');
+
         Route::post('/updateUserData','UserController@updateUserData');
         Route::post('/upload','UserController@upload');
 
