@@ -21,14 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('user_addresses/show', 'UserAddressesController@show')->name('user_addresses.show');
 
-    //Route::get('user_addresses', 'UserAddressesController@create')->name('user_addresses.create');
-
-
-
     Route::post('orders', 'OrdersController@store')->name('orders.store');
 
     Route::post('orders/{order}/received', 'OrdersController@received')->name('orders.received');
-
 
     Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');
 
