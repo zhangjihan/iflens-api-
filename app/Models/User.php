@@ -72,8 +72,6 @@ class User extends Authenticatable implements JWTSubject
      */
     public function addresses()
     {
-
-
         return $this->hasMany(UserAddress::class);
     }
 
@@ -83,6 +81,10 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
+    public function eyesData()
+    {
+        return $this->hasOne(Eyes_data::class);
+    }
 
     public function orders()
     {

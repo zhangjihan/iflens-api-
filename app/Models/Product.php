@@ -14,6 +14,7 @@ class Product extends Model
     ];
     protected $casts = [
         'on_sale' => 'boolean', // on_sale 是一个布尔类型的字段
+
     ];
 
     protected $with = "images";
@@ -40,6 +41,19 @@ class Product extends Model
         return $this->hasMany("App\Models\OrderItem");
     }
 
+
+    public function setImageAttribute($image)
+    {
+        if (is_array($image)) {
+            $this->attributes['image'] = json_encode($image);
+        }
+
+    }
+
+    public function getImageAttribute($image)
+    {
+        return json_decode($image, true);
+    }
 
 }
 
