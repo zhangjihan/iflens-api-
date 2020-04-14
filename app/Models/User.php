@@ -80,6 +80,10 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
+    public function eyesData()
+    {
+        return $this->hasOne(Eyes_data::class);
+    }
 
     public function orders()
     {

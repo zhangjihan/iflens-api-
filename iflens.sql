@@ -989,7 +989,7 @@ CREATE TABLE `admin_users`  (
 -- ----------------------------
 -- Records of admin_users
 -- ----------------------------
-INSERT INTO `admin_users` VALUES (1, 'admin', '$2y$10$VmS/la7sS2PNwiKsfadh4uufdihyewuArM0pbvKkLJsb97u4ngiMS', 'Administrator', 'images/A_ How long does it take for you to finish one art piece_ And how many hours per week do you draw on average_ B_ At the moment I´m working___.jpg', 'RuyxHwYXDTVeBjbPtGr6I4Iltf9t8NbJkWsO1rfAfwhkb6pgKtEOe08xg6Um', '2019-09-25 12:06:18', '2020-04-11 12:18:30');
+INSERT INTO `admin_users` VALUES (1, 'admin', '$2y$10$VmS/la7sS2PNwiKsfadh4uufdihyewuArM0pbvKkLJsb97u4ngiMS', 'Administrator', 'images/image1.jpg', 'RuyxHwYXDTVeBjbPtGr6I4Iltf9t8NbJkWsO1rfAfwhkb6pgKtEOe08xg6Um', '2019-09-25 12:06:18', '2020-04-11 12:18:30');
 INSERT INTO `admin_users` VALUES (2, 'chen', '$2y$10$P1IlUxpoCXnm8h1jZE/vUO7lHl6D3tMdf2t5ro6slfBvn.TPwNEOe', 'Admin', NULL, NULL, '2020-04-13 04:17:53', '2020-04-13 04:18:12');
 
 -- ----------------------------
