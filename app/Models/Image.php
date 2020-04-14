@@ -15,7 +15,6 @@ class Image extends Model
         'image_url' => '/image/user/default.jpg'
     ];
 
-
     /**
      * 获取拥有此图片的模型
      */
@@ -24,3 +23,4 @@ class Image extends Model
         return $this->morphTo();
     }
 }
+

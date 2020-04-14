@@ -30,7 +30,12 @@ class ProductsController extends AdminController
         $grid->column('id', __('Id'))->sortable();
         $grid->column('title', __('商品名称'));
         $grid->column('description', __('描述'));
-        $grid->column('image', __('封面图片'));
+        //      $grid->column('image','图片');
+        //            ->display(function ($image) {
+        //                return $image;
+        //        })->image('http://' . config('filesystems.disks.qiniu.domains.default') . '/', 200, 100);
+        //image的第一个参数是图片的server地址，第二个参数为宽度，第三个参数是高度。
+
         $grid->column('on_sale', __('已上架'))
             ->display(function ($value)
             {
@@ -113,8 +118,8 @@ class ProductsController extends AdminController
             ->rules('required');
 
         // 创建一个图片选择框
-        $form->image('image', __('封面图片'))
-            ->rules('required|image');
+        $form->multipleImage('image', '图片')->removable()->sortable();
+
 
         // 创建一组单选框
         $form->switch('on_sale', __('上架'))
@@ -130,11 +135,13 @@ class ProductsController extends AdminController
 
         // 定义事件回调，当模型即将保存时会触发这个回调
         $form->saving(function (Form $form) {
-            $form->model()->price = collect($form->input('skus'))->where(Form::REMOVE_FLAG_NAME, 0)->min('price') ?: 0;
+            $form->model()->price = collect($form->input('skus'))
+                ->where(Form::REMOVE_FLAG_NAME, 0)
+                ->min('price') ?: 0;
         });
         $form->decimal('rating', __('Rating'))->default(5.00);
-
-
         return $form;
     }
+
+
 }
