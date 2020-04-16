@@ -81,7 +81,7 @@ class LensController extends AdminController
         ]);
         $grid->column('description', __('描述'));
         $grid->column('abbe', __('阿贝数'))->sortable();
-        $grid->column('transmittance', __('透光率'))->sortable();;
+        $grid->column('transmittance', __('透光率'));
         $grid->column('refraction', __('折射率'))->sortable();;
         $grid->column('weight', __('重量'));
         $grid->column('membrane', __('膜层'));
