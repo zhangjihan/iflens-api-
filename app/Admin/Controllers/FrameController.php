@@ -35,11 +35,43 @@ class FrameController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('title', __('镜架名称'));
-        $grid->column('brand', __('品牌'));
-        $grid->column('type', __('分类'));
-        $grid->column('texture', __('材质'));
-        $grid->column('rim', __('边框'));
-        $grid->column('nosePads', __('鼻托'));
+        $grid->column('brand', __('品牌'))
+            ->replace([
+            '0'=>'蔡司',
+            '1'=>'依视路',
+            '2'=>'李维斯',
+            '3'=>'夏蒙',
+            '4'=>'宝岛',
+            '5'=>'暴龙',
+            '6'=>'木九十',
+            '7'=>'米家',
+            '8'=>'派丽蒙',
+            '9'=>'精工',
+            '10'=>'雷朋',
+            '11'=>'万新',
+            '12'=>'宝岛',
+            '13'=>'明月',
+            '14'=>'万宝龙',
+        ]);
+        $grid->column('type', __('分类'))
+            ->replace([
+            '1'=>'近视镜',
+            '2'=>'远视镜' ,
+            '3'=>'防蓝光',
+            '4'=>'泳镜',
+        ]);
+        $grid->column('texture', __('材质'))
+            ->replace(['0'=>'合金','1'=>'塑料','2'=>'板材']);
+        $grid->column('rim', __('边框'))
+            ->replace([
+                '0'=>'圆形全框',
+                '1'=>'圆形半框',
+                '2'=>'方形全框',
+                '3'=>'方形半框',
+                '4'=>'眉线框',
+            ]);
+        $grid->column('nosePads', __('鼻托'))
+            ->replace(['0'=>'无鼻托','1'=>'有鼻托']);
         $grid->column('dimension', __('尺寸'));
         $grid->column('weight', __('重量'));
         $grid->column('created_at', __('Created at'));
@@ -111,7 +143,15 @@ class FrameController extends AdminController
             '3'=>'夏蒙',
             '4'=>'宝岛',
             '5'=>'暴龙',
-            '6'=>'九十木'
+            '6'=>'木九十',
+            '7'=>'米家',
+            '8'=>'派丽蒙',
+            '9'=>'精工',
+            '10'=>'雷朋',
+            '11'=>'万新',
+            '12'=>'宝岛',
+            '13'=>'明月',
+            '14'=>'万宝龙',
         ]);
 
         $form->select('type', __('分类'))
