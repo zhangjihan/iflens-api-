@@ -34,22 +34,79 @@ class LensController extends AdminController
     {
         $grid = new Grid(new Lens());
 
-        $grid->column('id', __('Id'));
+        $grid->column('id', __('Id'))->sortable();;
         $grid->column('title', __('镜片名称'));
-        $grid->column('price', __('指导价'));
-        $grid->column('brand', __('品牌'));
-        $grid->column('type', __('分类'));
+        $grid->column('price', __('指导价'))
+            ->sortable()
+            ->display(function ($price) {
+                return "<span style='color:blue'>$price</span>";
+            });
+        $grid->column('brand', __('品牌'))
+            ->replace([
+            'ZEISS'=> '蔡司',
+            'Essilor'=> '依视路',
+            'HOYA'=> '豪雅',
+            'Rodenstock'=> '罗敦司得',
+            'Seiko' =>'精工',
+            'Shamir'=> '沙米尔',
+            'Chemilens'=>'凯米',
+            'Younger'=>'雅歌',
+            'Transitions'=>'全视线',
+            'Kodak'=> '柯达',
+            'Nikon'=> '尼康',
+            'Asahi'=> '朝日',
+            'TOKAI' => '东海',
+            'WX'=> '万新',
+            'Conant'=>'康耐特',
+            'Mingyue'=>'明月',
+            'Norville'=>'诺威尔',
+            'ITOH'=>'伊藤',
+            'Nidek'=>'尼德克',
+        ]);
+        $grid->column('type', __('分类'))
+            ->replace([
+            '0'=>'单光镜片',
+            '1'=>'渐进镜片',
+            '2'=>'防蓝光镜片',
+            '3'=>'太阳镜片',
+            '4'=>'偏光镜片',
+            '5'=>'运动镜片',
+            '6'=>'变色镜片',
+            '7'=>'染色镜片',
+            '8'=>'定制镜片',
+                '9'=>'成长乐镜片',
+                '10'=>'驾驶型镜片',
+                '11'=>'数码型镜片',
+                '12'=>'菁悦活力镜片'
+        ]);
         $grid->column('description', __('描述'));
-        $grid->column('abbe', __('阿贝数'));
-        $grid->column('transmittance', __('透光率'));
-        $grid->column('refraction', __('折射率'));
+        $grid->column('abbe', __('阿贝数'))->sortable();
+        $grid->column('transmittance', __('透光率'))->sortable();;
+        $grid->column('refraction', __('折射率'))->sortable();;
         $grid->column('weight', __('重量'));
         $grid->column('membrane', __('膜层'));
-        $grid->column('spherical', __('球面/非球面'));
-        $grid->column('texture', __('材质'));
-        $grid->column('country', __('产地'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('spherical', __('spherical'))
+            ->replace(['0'=>'非球面','1'=>'球面']);
+        $grid->column('texture', __('材质'))
+            ->replace([
+            '0'=>'树脂',
+            '1'=>'玻璃',
+            '2'=>'PC',
+            '3'=>'Trilogy',
+        ]);
+        $grid->column('country', __('国家'))
+            ->replace([
+            '0'=>'中国',
+            '1'=>'德国',
+            '2'=>'日本',
+            '3'=>'美国',
+            '4'=>'以色列',
+            '5'=>'法国',
+            '6'=>'韩国',
+            '7'=>'英国',
+        ]);
+        //$grid->column('created_at', __('Created at'));
+        //$grid->column('updated_at', __('Updated at'));
 
 
 
@@ -119,7 +176,27 @@ class LensController extends AdminController
         $form->text('title', __('标题'));
         $form->decimal('price', __('Price'));
         $form->select('brand', __('品牌'))
-            ->options(['zeiss'=>'蔡司','essilor'=>'依视路']);
+            ->options([
+                'ZEISS'=> '蔡司',
+                'Essilor'=> '依视路',
+                'HOYA'=> '豪雅',
+                'Rodenstock'=> '罗敦司得',
+                'Seiko' =>'精工',
+                'Shamir'=> '沙米尔',
+                'Chemilens'=>'凯米',
+                'Younger'=>'雅歌',
+                'Transitions'=>'全视线',
+                'Kodak'=> '柯达',
+                'Nikon'=> '尼康',
+                'Asahi'=> '朝日',
+                'TOKAI' => '东海',
+                'WX'=> '万新',
+                'Conant'=>'康耐特',
+                'Mingyue'=>'明月',
+                'Norville'=>'诺威尔',
+                'ITOH'=>'伊藤',
+                'Nidek'=>'尼德克',
+                ]);
 
         $form->textarea('description', __('Description'));
         $form->decimal('abbe', __('阿贝数'));
@@ -129,7 +206,21 @@ class LensController extends AdminController
         $form->text('membrane', __('膜层'));
 
         $form->select('type', __('分类'))
-            ->options(['0'=>'近视','1'=>'远视',])
+            ->options([
+                '0'=>'单光镜片',
+                '1'=>'渐进镜片',
+                '2'=>'防蓝光镜片',
+                '3'=>'太阳镜片',
+                '4'=>'偏光镜片',
+                '5'=>'运动镜片',
+                '6'=>'变色镜片',
+                '7'=>'染色镜片',
+                '8'=>'定制镜片',
+                '9'=>'成长乐镜片',
+                '10'=>'驾驶型镜片',
+                '11'=>'数码型镜片',
+                '12'=>'菁悦活力镜片'
+                ])
             ->default('0');
 
         $form->radio('spherical', __('Spherical'))
@@ -137,11 +228,25 @@ class LensController extends AdminController
             ->default('0');
 
         $form->radio('texture', __('材质'))
-            ->options(['0'=>'树脂','1'=>'玻璃'])
+            ->options([
+                '0'=>'树脂',
+                '1'=>'玻璃',
+                '2'=>'PC',
+                '3'=>'Trilogy',
+            ])
             ->default('0');
 
-        $form->select('country', __('产地'))
-            ->options(['0'=>'中国','1'=>'德国','2'=>'日本','3'=>'美国'])
+        $form->select('country', __('国家'))
+            ->options([
+                '0'=>'中国',
+                '1'=>'德国',
+                '2'=>'日本',
+                '3'=>'美国',
+                '4'=>'以色列',
+                '5'=>'法国',
+                '6'=>'韩国',
+                '7'=>'英国',
+            ])
             ->default('0');
 
         return $form;
