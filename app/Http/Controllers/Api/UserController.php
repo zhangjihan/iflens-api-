@@ -14,6 +14,8 @@ class UserController extends Controller
 {
 
     public $loginAfterSignUp = true;
+    public $path = "/image/user/";
+    public $type = ".png";
 
     public function register(Request $request)
     {
@@ -33,7 +35,7 @@ class UserController extends Controller
             'success' => true,
             'data' => $user,
             'message' => '注册成功',
-            'status' =>200
+            'status' => 200
         ]);
     }
 
@@ -54,7 +56,7 @@ class UserController extends Controller
             'success' => true,
             'token' => $jwt_token,
             'message' => '登录成功',
-            'status'=>200
+            'status' => 200
         ]);
     }
 
@@ -76,7 +78,7 @@ class UserController extends Controller
                 'success' => false,
                 'message' => 'Sorry, the user cannot be logged out',
 
-            ],400);
+            ], 400);
         }
     }
 
@@ -91,27 +93,36 @@ class UserController extends Controller
         $user = JWTAuth::authenticate($request->token);
 
 
-        return response()->json(['user' => $user, 'message' => '已获取用户','status'=>200]);
+        return response()->json(['user' => $user, 'message' => '已获取用户', 'status' => 200]);
     }
+
+//    public function getRelevance(Request $request)
+//    {
+//        $user = JWTAuth::authenticate($request->token)->with(['addresses','eyesData','orders'=>function($orders){
+//            $orders->with("items")->get();
+//        },'cartItems'=>function($cartItems){
+//            $cartItems->with("productSku")->get();
+//        }])->first();
+//        return  response()->json(["user"=>$user,"status"=>200]) ;
+//    }
 
     public function getRelevance(Request $request)
     {
 
-        if($id=JWTAuth::authenticate($request->token)->id){
-            $user = User::with(['addresses','eyesData','orders'=>function($orders){
+        if ($id = JWTAuth::authenticate($request->token)->id) {
+            $user = User::with(['addresses', 'eyesData', 'orders' => function ($orders) {
                 $orders->with("items")->get();
-            },'cartItems'=>function($cartItems){
+            }, 'cartItems' => function ($cartItems) {
                 $cartItems->with("productSku")->get();
             }])->find($id);
 
 
-            return  response()->json(["user"=>$user,"status"=>200]);
+            return response()->json(["user" => $user, "status" => 200]);
         }
     }
-
     public function updateUserData(Request $request)
     {
-        if($id=JWTAuth::authenticate($request->token)->id) {
+        if ($id = JWTAuth::authenticate($request->token)->id) {
             JWTAuth::authenticate($request->token)->update(['name' => $request->name]);
             $user = User::with('eyesData')->find($id);
 
@@ -123,5 +134,18 @@ class UserController extends Controller
 
             return response()->json(["name" => $user->name, "eyesData" => $user->eyesData()->get(), "status" => 200, "messgae" => "保存成功"]);
         }
+    }
+
+    public function upload(Request $request)
+    {
+        $file_name = uniqid(mt_rand(), 1);
+        $user = JWTAuth::authenticate($request->token);
+        if (move_uploaded_file($_FILES['multfile']['tmp_name'], ".".$this->path.$file_name.$this->type)) {
+            $user->image()->update(["image_url" => $this->path.$file_name.$this->type]);
+            return response()->json(["message"=>"头像更新成功","status"=>200]);
+        }else{
+            return response()->json(["message"=>"头像更新失败"]);
+        };
+
     }
 }

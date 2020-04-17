@@ -13,7 +13,6 @@ class Product extends Model
     ];
     protected $casts = [
         'on_sale' => 'boolean', // on_sale 是一个布尔类型的字段
-
     ];
 
     protected $with = "images";
@@ -29,19 +28,20 @@ class Product extends Model
         return $this->hasMany("App\Models\ProductSku");
     }
 
-
-
     public function images()
     {
         return $this->morphMany("App\Models\Image", "imageable");
     }
 
-    protected static function booted()
+//    protected static function booted()
+//    {
+//        static::created(function ($product) {
+//        });
+//    }
+
+    public function items()
     {
-        static::created(function ($product) {
-
-
-        });
+        return $this->hasMany("App\Models\OrderItem");
     }
 
     public function setImageAttribute($image)
