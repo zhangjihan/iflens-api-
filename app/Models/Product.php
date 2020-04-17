@@ -30,19 +30,16 @@ class Product extends Model
     }
 
 
-
     public function images()
     {
         return $this->morphMany("App\Models\Image", "imageable");
     }
 
-    protected static function booted()
+    public function items()
     {
-        static::created(function ($product) {
-
-
-        });
+        return $this->hasMany("App\Models\OrderItem");
     }
+
 
 }
 

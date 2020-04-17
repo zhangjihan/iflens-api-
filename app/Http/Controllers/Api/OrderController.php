@@ -18,7 +18,7 @@ class OrderController extends Controller
         $address = $this->getAddress($request->address);
 
 
-        $user = JWTAuth::authenticate($request->token)->first();
+        $user = JWTAuth::authenticate($request->token);
         if ($order = $user->orders()->create(["address" => $address, "total_amount" => $total_amount])) {
             foreach ($request->cartItems as $index => $cartItem) {
                 $order->items()->create(["product_sku_id" => $cartItem['product_sku']['id'],
