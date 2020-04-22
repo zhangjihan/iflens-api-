@@ -14,7 +14,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
     use Notifiable;
-
+    protected $attributes = ['is_activity' => 0];
     /**?
      * @var array 默认预加载
      */
@@ -45,7 +45,6 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.

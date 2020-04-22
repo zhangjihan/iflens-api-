@@ -22,7 +22,6 @@ Route::namespace('Api')->group(function () {
     Route::post('/login', 'UserController@login');
     Route::post('/register', 'UserController@register');
     Route::post('emailValidation', 'Usercontroller@emailValidation');
-
     Route::post('/getProduct', 'ProductController@product');
     Route::post('/getHotProducts', 'ProductController@getHotProducts');
     Route::get('/getProducts', 'ProductController@productsList');
@@ -42,13 +41,8 @@ Route::namespace('Api')->group(function () {
         Route::post('/updateUserData', 'UserController@updateUserData');
         Route::post('/upload', 'UserController@upload');
         Route::post('/changePassword', 'UserController@changePassword');
-
         Route::post('/setOrder', 'OrderController@setOrder');
-
-
 
 
     });
 });
-
-

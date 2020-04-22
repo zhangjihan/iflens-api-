@@ -62,18 +62,6 @@ class Product extends Model
         return json_decode($image, true);
     }
 
-    public function setImageAttribute($image)
-    {
-        if (is_array($image)) {
-            $this->attributes['image'] = json_encode($image);
-        }
-
-    }
-
-    public function getImageAttribute($image)
-    {
-        return json_decode($image, true);
-    }
 
 }
 
