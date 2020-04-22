@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $attributes = [
+        'image' => '/image/product/example.jpg'
+    ];
+
     protected $fillable = [
         'title', 'description', 'image', 'on_sale',
 

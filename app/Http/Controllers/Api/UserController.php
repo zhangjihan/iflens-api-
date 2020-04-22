@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Auth;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -23,17 +23,23 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        $user->activity_token = \Str::random(60);
+        $user->activity_expire = Carbon::tomorrow('Europe/London');
         $user->save();
+
         User::find($user->id)->image()->create();
 
+
+        $this->senEmail($user);
 
         if ($this->loginAfterSignUp) {
             return $this->login($request);
         }
 
+
         return response()->json([
             'success' => true,
-            'data' => $user,
+            'time' => $user->activity_expire,
             'message' => '注册成功',
             'status' => 200
         ]);
@@ -131,12 +137,59 @@ class UserController extends Controller
     {
         $file_name = uniqid(mt_rand(), 1);
         $user = JWTAuth::authenticate($request->token);
-        if (move_uploaded_file($_FILES['multfile']['tmp_name'], ".".$this->path.$file_name.$this->type)) {
-            $user->image()->update(["image_url" => $this->path.$file_name.$this->type]);
-            return response()->json(["message"=>"头像更新成功","status"=>200]);
-        }else{
-            return response()->json(["message"=>"头像更新失败"]);
+        if (move_uploaded_file($_FILES['multfile']['tmp_name'], "." . $this->path . $file_name . $this->type)) {
+            $user->image()->update(["image_url" => $this->path . $file_name . $this->type]);
+            return response()->json(["message" => "头像更新成功", "status" => 200]);
+        } else {
+            return response()->json(["message" => "头像更新失败"]);
         };
+
+    }
+
+    public function senEmail($user)
+    {
+        \Mail::raw('请在' . $user->activity_expire . '前,点击链接激活您的账号' . 'http://localhost:8080/#/mail/' . $user->activity_token
+            , function ($message) use ($user) {
+                $message->from('1440963706@qq.com', 'iflens邮箱激活')
+                    ->subject('邮箱激活邮件')
+                    ->to($user->email);
+            });
+    }
+
+    public function emailValidation(Request $request)
+    {
+        //0未找到,1过期,2验证成功
+        $message = "token错误";
+        $type = 0;
+        if ($user = User::where("activity_token", $request->activity_token)->first()) {
+            if (strtotime($user->activity_expire) < time()) {
+                $message = "token已过期";
+                $type = 1;
+                $user->activity_token = \Str::random(60);
+                $user->activity_expire = Carbon::tomorrow('Europe/London');
+                $user->save();
+                $this->senEmail($user);
+            } else {
+                $user->is_activity = 1;
+                $user->save();
+                $message = "验证成功";
+                $type = 2;
+            }
+
+        };
+        return response()->json(["message" => $message, "status" => 200, "type" => $type]);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $user = JWTAuth::authenticate($request->token);
+        if (Auth::attempt(['email' => $user->email, 'password' => $request->currentPassword])) {
+            $user->password = bcrypt($request->newPassword);
+            $user->save();
+            return response()->json(["message" => "修改成功", "status" => 200]);
+        } else {
+            return response()->json(["message" => "密码错误"]);
+        }
 
     }
 }

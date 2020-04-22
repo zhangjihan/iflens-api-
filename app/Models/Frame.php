@@ -10,4 +10,9 @@ class Frame extends Model
     {
         return $this->morphOne('App\Models\Product','productable');
     }
+
+    public function images()
+    {
+        return $this->morphMany('App\Models\Image','imageable');
+    }
 }

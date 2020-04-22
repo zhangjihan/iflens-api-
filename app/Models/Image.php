@@ -15,6 +15,7 @@ class Image extends Model
         'image_url' => '/image/user/default.jpg'
     ];
 
+    protected $fillable = ['image_url'];
 
     /**
      * 获取拥有此图片的模型
