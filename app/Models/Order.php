@@ -36,10 +36,7 @@ class Order extends Model
     ];
 
     public static $refundStatusMap = [
-
-
         self::REFUND_STATUS_PENDING => '无',
-
         self::REFUND_STATUS_APPLIED => '已申请退款',
         self::REFUND_STATUS_PROCESSING => '退款中',
         self::REFUND_STATUS_SUCCESS    => '退款成功',
@@ -57,18 +54,13 @@ class Order extends Model
         'order_status',
         'address',
         'total_amount',
-
         'paid_at',
-
         'payment_no',
         'refund_status',
         'refund_no',
         'closed',
-
-
         'ship_status',
         'ship_data',
-
     ];
 
     protected $casts = [
@@ -126,9 +118,7 @@ class Order extends Model
 
         return false;
     }
-
-
-    public static function getAvailableRefundNo()
+   public static function getAvailableRefundNo()
     {
         do {
             // Uuid类可以用来生成大概率不重复的字符串

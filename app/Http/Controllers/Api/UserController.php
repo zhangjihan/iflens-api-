@@ -143,6 +143,7 @@ class UserController extends Controller
         } else {
             return response()->json(["message" => "头像更新失败"]);
         };
+    }
 
     }
 
