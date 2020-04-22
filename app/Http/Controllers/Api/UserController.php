@@ -145,8 +145,6 @@ class UserController extends Controller
         };
     }
 
-    }
-
     public function senEmail($user)
     {
         \Mail::raw('请在' . $user->activity_expire . '前,点击链接激活您的账号' . 'http://localhost:8080/#/mail/' . $user->activity_token
