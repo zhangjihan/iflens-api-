@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Models\UserAddress;
 use JWTAuth;
@@ -11,23 +12,17 @@ class AddressController extends Controller
 {
     public function addAddress(Request $request)
     {
-
         $newAddress= $request->address;
-
         if($address=($request->address['id']?UserAddress::find( $newAddress['id']):null)){
             $address->update( $newAddress);
             $message="更新成功";
         }else{
-            $newAddress['user_id']=JWTAuth::authenticate($request->token)->id;
-
+            $user=JWTAuth::authenticate($request->token);
             unset($newAddress['id']);
-
-            UserAddress::create($newAddress);
+            $user->addresses()->create($newAddress);
             $message="添加成功";
         }
         return $this->AddressInfo($request->token,$message);
-
-
     }
 
     public function deleteAddress(Request $request)
