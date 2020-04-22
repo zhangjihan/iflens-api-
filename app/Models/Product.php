@@ -33,17 +33,34 @@ class Product extends Model
         return $this->hasMany("App\Models\ProductSku");
     }
 
-
     public function images()
     {
         return $this->morphMany("App\Models\Image", "imageable");
     }
+
+//    protected static function booted()
+//    {
+//        static::created(function ($product) {
+//        });
+//    }
 
     public function items()
     {
         return $this->hasMany("App\Models\OrderItem");
     }
 
+    public function setImageAttribute($image)
+    {
+        if (is_array($image)) {
+            $this->attributes['image'] = json_encode($image);
+        }
+
+    }
+
+    public function getImageAttribute($image)
+    {
+        return json_decode($image, true);
+    }
 
     public function setImageAttribute($image)
     {

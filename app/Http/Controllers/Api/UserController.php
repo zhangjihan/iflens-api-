@@ -102,6 +102,7 @@ class UserController extends Controller
         return response()->json(['user' => $user, 'message' => '已获取用户', 'status' => 200]);
     }
 
+
     public function getRelevance(Request $request)
     {
 
@@ -116,7 +117,6 @@ class UserController extends Controller
             return response()->json(["user" => $user, "status" => 200]);
         }
     }
-
     public function updateUserData(Request $request)
     {
         if ($id = JWTAuth::authenticate($request->token)->id) {
