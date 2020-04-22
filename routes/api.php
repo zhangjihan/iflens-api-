@@ -21,7 +21,7 @@ Route::namespace('Api')->group(function () {
     Route::post('/test', 'TestController@index');
     Route::post('/login', 'UserController@login');
     Route::post('/register', 'UserController@register');
-    Route::post('emailValidation', 'Usercontroller@emailValidation');
+    Route::post('emailValidation', 'UserController@emailValidation');
     Route::post('/getProduct', 'ProductController@product');
     Route::post('/getHotProducts', 'ProductController@getHotProducts');
     Route::get('/getProducts', 'ProductController@productsList');

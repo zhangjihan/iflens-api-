@@ -149,7 +149,7 @@ class UserController extends Controller
     {
         \Mail::raw('请在 ' . $user->activity_expire . '前, 点击链接激活您的账号 ' . 'http://iflens.com/#/mail/' . $user->activity_token
             , function ($message) use ($user) {
-                $message->from('iflens-admin', 'iflens-邮箱激活')
+                $message->from('1440963706@qq.com', 'iflens-邮箱激活')
                     ->subject('iflens-邮箱激活邮件')
                     ->to($user->email);
             });
